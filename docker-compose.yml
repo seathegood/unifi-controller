@@ -16,7 +16,7 @@ services:
       args:
         VERSION: "6.4.54"
         VCS_REF: "551a9b2"
-        BUILD_DATE: "2021-11-15T21:29:46Z"
+        BUILD_DATE: "2021-11-15T22:01:00Z"
     hostname: unifi
     domainname: seathegood.net
     networks:

@@ -1,3 +1,5 @@
+version: '3.7'
+
 services:
 
   mongo:
@@ -9,7 +11,12 @@ services:
     restart: unless-stopped
 
   controller:
-    image: "goofball222/unifi:6.5-ubuntu"
+    build:
+      context: ./docker/controller
+      args:
+        VERSION: "6.4.54"
+        VCS_REF: "551a9b2"
+        BUILD_DATE: "2021-11-15T21:29:46Z"
     hostname: unifi
     domainname: seathegood.net
     networks:
@@ -39,4 +46,3 @@ networks:
     name: macvlan99
   backend:
     internal: true
-

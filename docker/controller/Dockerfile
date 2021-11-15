@@ -33,7 +33,7 @@ ENV \
 
 # copy in logical defaults for unifi
 WORKDIR /usr/lib/unifi
-COPY entrypoint.sh entrypoint-functions.sh healthcheck.sh /usr/local/bin
+COPY entrypoint.sh entrypoint-functions.sh healthcheck.sh /usr/local/bin/
 
 # setup security context for the unifi user
 RUN set -x \

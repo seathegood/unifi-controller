@@ -1,0 +1,42 @@
+services:
+
+  mongo:
+    image: "mongo:3.6"
+    networks:
+      - backend
+    volumes:
+      - "./volumes/mongo/data/db:/data/db"
+    restart: unless-stopped
+
+  controller:
+    image: "goofball222/unifi:6.5-ubuntu"
+    hostname: unifi
+    domainname: seathegood.net
+    networks:
+      frontend:
+        ipv4_address: 192.168.99.132
+      backend:
+    dns:
+      - 192.168.99.1
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./volumes/controller/cert:/usr/lib/unifi/cert"
+      - "./volumes/controller/data:/usr/lib/unifi/data"
+      - "./volumes/controller/logs:/usr/lib/unifi/logs"
+    environment:
+      - "DB_MONGO_LOCAL=false"
+      - "DB_MONGO_URI=mongodb://mongo:27017/unifi"
+      - "STATDB_MONGO_URI=mongodb://mongo:27017/unifi_stat"
+      - "TZ=America/Chicago"
+      - "UNIFI_DB_NAME=unifi"
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+networks:
+  frontend:
+    external: true
+    name: macvlan99
+  backend:
+    internal: true
+

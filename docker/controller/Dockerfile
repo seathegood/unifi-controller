@@ -43,6 +43,11 @@ RUN set -x \
 # install unifi dependencies
 RUN set -x \
     && fetchDeps=' \
+        binutils \
+        libcap2 \
+        libcap2-bin \
+        jsvc \
+        logrotate \
     	curl \
     	gosu \
         apt-transport-https \

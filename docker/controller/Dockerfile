@@ -33,7 +33,7 @@ ENV \
 
 # copy in logical defaults for unifi
 WORKDIR /usr/lib/unifi
-COPY entrypoint.sh entrypoint-functions.sh healthcheck.sh /
+COPY entrypoint.sh entrypoint-functions.sh healthcheck.sh /usr/local/bin
 
 # setup security context for the unifi user
 RUN set -x \
@@ -41,14 +41,16 @@ RUN set -x \
 	&& useradd --no-log-init -r -u $PUID -g $PGID unifi
 
 # install unifi dependencies
-RUN apt-get update \
-    && apt-get install -y \
-    	apt-utils \
+RUN set -x \
+    && fetchDeps=' \
     	curl \
     	gosu \
         apt-transport-https \
         ca-certificates \
         openjdk-8-jre-headless \
+    ' \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends $fetchDeps \
     && apt-get autoremove --purge \
 	&& apt-get clean autoclean
 

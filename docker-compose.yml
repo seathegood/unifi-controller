@@ -1,7 +1,4 @@
-version: '3.7'
-
 services:
-
   mongo:
     image: "mongo:3.6"
     networks:
@@ -9,7 +6,6 @@ services:
     volumes:
       - "./volumes/mongo/data/db:/data/db"
     restart: unless-stopped
-
   controller:
     build:
       context: ./docker/controller
@@ -39,7 +35,12 @@ services:
     depends_on:
       - mongo
     restart: unless-stopped
-
+    healthcheck:
+      test: "${DOCKER_WEB_HEALTHCHECK_TEST:-curl localhost:8080/status}"
+      interval: "60s"
+      timeout: "3s"
+      start_period: "5s"
+      retries: 3
 networks:
   frontend:
     external: true

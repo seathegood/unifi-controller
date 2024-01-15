@@ -1,8 +1,7 @@
 services:
   mongo:
     image: "mongo:3.6"
-    networks:
-      - backend
+    command: --wiredTigerCacheSizeGB 1 --smallfiles
     volumes:
       - "./volumes/mongo/data/db:/data/db"
     restart: unless-stopped
@@ -10,17 +9,25 @@ services:
     build:
       context: ./docker/controller
       args:
-        VERSION: "6.5.52-4b1a918bba"
-        VCS_REF: ""
-        BUILD_DATE: "2021-11-15T22:01:00Z"
+        VERSION: "8.0.24"
+        VCS_REF: "450f174e64"
+        BUILD_DATE: "2023-12-12T16:44:35Z"
     hostname: unifi
     domainname: seathegood.net
-    networks:
-      frontend:
-        ipv4_address: 192.168.99.132
-      backend:
-    dns:
-      - 192.168.99.1
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "3478:3478/udp"
+      - "5514:5514/udp"
+      - "8080:8080/tcp"
+      - "8443:8443/tcp"
+      - "8880:8880/tcp"
+      - "8843:8843/tcp"
+      - "6789:6789/tcp"
+      - "27117:27117/tcp"
+      - "10001:10001/udp"
+      - "1900:1900/udp"
+      - "123:123/udp"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "./volumes/controller/cert:/usr/lib/unifi/cert"
@@ -35,12 +42,7 @@ services:
     depends_on:
       - mongo
     restart: unless-stopped
-    healthcheck:
-      test: "${DOCKER_WEB_HEALTHCHECK_TEST:-curl localhost:8080/status}"
-      interval: "60s"
-      timeout: "3s"
-      start_period: "5s"
-      retries: 3
+
 networks:
   frontend:
     external: true

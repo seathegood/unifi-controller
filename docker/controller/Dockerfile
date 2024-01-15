@@ -1,5 +1,5 @@
 # base image
-FROM ubuntu:20.04
+FROM debian:bullseye-backports
 
 # Local Arguements
 ARG VERSION
@@ -53,21 +53,25 @@ RUN set -x \
     	gosu \
         apt-transport-https \
         ca-certificates \
-        openjdk-8-jre-headless \
+        openjdk-17-jre-headless \
+        gpg \
+        gpg-agent \
+        procps \
+        tzdata \
     ' \
     && apt-get update \
     && apt-get install -y --no-install-recommends $fetchDeps \
     && apt-get autoremove --purge \
-	&& apt-get clean autoclean
+    && apt-get clean autoclean 
 
 # download and install the unifi controller
-RUN curl -sSL https://dl.ui.com/unifi/${VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${VERSION}.deb \
-	&& dpkg --force-all -i /tmp/unifi-${VERSION}.deb \
+RUN curl --show-error --silent --location https://dl.ui.com/unifi/${VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${VERSION}.deb \
+    && dpkg --force-all -i /tmp/unifi-${VERSION}.deb \
     && bash -c 'mkdir -p {data,logs,run,cert}' \
     && chown -R unifi:unifi /usr/lib/unifi \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
 
-EXPOSE 3478/udp 6789/tcp 8080/tcp 8443/tcp 8843/tcp 8880/tcp 10001/udp
+EXPOSE 3478/udp 5514/udp 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 27117/tcp 10001/udp 1900/udp 123/udp 
 
 VOLUME ["/usr/lib/unifi/cert", "/usr/lib/unifi/data", "/usr/lib/unifi/logs"]
 

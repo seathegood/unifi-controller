@@ -15,3 +15,6 @@
 # vendor/
 .DS_Store
 .DS_Store
+
+# Project files generated through testing
+./volumes

@@ -106,5 +106,4 @@ else
     fi
 fi
 
-# Script should never make it here, but just in case exit with a generic error code if it does
 exit 1;

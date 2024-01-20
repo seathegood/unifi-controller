@@ -1,5 +1,5 @@
 # base image
-FROM debian:bullseye-backports
+FROM debian:bullseye
 
 # Local Arguements
 ARG VERSION
@@ -32,7 +32,6 @@ ENV \
 	RUNAS_UID0=false
 
 # copy in logical defaults for unifi
-WORKDIR /usr/lib/unifi
 COPY entrypoint.sh entrypoint-functions.sh healthcheck.sh /usr/local/bin/
 COPY system.properties.default /usr/lib/unifi/
 
@@ -65,6 +64,7 @@ RUN set -x \
     && apt-get clean autoclean 
 
 # download and install the unifi controller
+WORKDIR /usr/lib/unifi
 RUN curl --show-error --silent --location https://dl.ui.com/unifi/${VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${VERSION}.deb \
     && dpkg --force-all -i /tmp/unifi-${VERSION}.deb \
     && bash -c 'mkdir -p {data,logs,run,cert}' \

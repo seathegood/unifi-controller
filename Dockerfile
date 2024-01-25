@@ -2,9 +2,7 @@
 FROM debian:bullseye
 
 # Local Arguements
-ARG VERSION
-ARG VCS_REF
-ARG BUILD_DATE
+ARG UNIFI_CONTROLLER_VERSION
 
 # image labels using OPI spec
 LABEL \
@@ -12,10 +10,8 @@ LABEL \
 	org.opencontainers.image.url="https://github.com/seathegood/unifi" \
 	org.opencontainers.image.title="Unifi Controller" \
 	org.opencontainers.image.description="Unifi Controller without a local MongoDB instance" \
-	org.opencontainers.image.version=${VERSION} \
-	org.opencontainers.image.source="https://github.com/seathegood/unifi" \
-	org.opencontainers.image.revision=${VCS_REF} \
-	org.opencontainers.image.created=${BUILD_DATE} \
+	org.opencontainers.image.version=${UNIFI_CONTROLLER_VERSION} \
+	org.opencontainers.image.source="https://github.com/seathegood/unifi-controller" \
 	org.opencontainers.image.licenses="MIT"
 
 # build environment variables
@@ -65,8 +61,8 @@ RUN set -x \
 
 # download and install the unifi controller
 WORKDIR /usr/lib/unifi
-RUN curl --show-error --silent --location https://dl.ui.com/unifi/${VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${VERSION}.deb \
-    && dpkg --force-all -i /tmp/unifi-${VERSION}.deb \
+RUN curl --show-error --silent --location https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
+    && dpkg --force-all -i /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
     && bash -c 'mkdir -p {data,logs,run,cert}' \
     && chown -R unifi:unifi /usr/lib/unifi \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*

@@ -17,7 +17,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [8.0.28, 8.0.26]
+        version:
+          - "8.0.28"
+          - "8.0.26"
         platform:
           - linux/amd64
           - linux/arm64
@@ -38,9 +40,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY_IMAGE }}
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=raw, value={{sha}},enable=${{ github.ref_type != 'tag' }}
+            type=semver,pattern={{version}},value=${{ matrix.version }}
+            type=sha
+
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -73,7 +75,7 @@ jobs:
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          name: digests-${{ env.PLATFORM_PAIR }}
+          name: digests-${{ env.PLATFORM_PAIR }}-${{ env.UNIFI_CONTROLLER_VERSION }}
           path: /tmp/digests/*
           if-no-files-found: error
           retention-days: 1
@@ -110,7 +112,7 @@ jobs:
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
-                      
+
       - name: Inspect image
         run: |
           docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}

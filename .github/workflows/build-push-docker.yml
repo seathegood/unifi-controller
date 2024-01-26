@@ -17,9 +17,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version:
-          - "8.0.28"
-          - "8.0.26"
         platform:
           - linux/amd64
           - linux/arm64
@@ -28,7 +25,7 @@ jobs:
         run: |
           platform=${{ matrix.platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
-          version=${{ matrix.version }}
+          version=${{ github.event.release.tag_name }}
           echo "UNIFI_CONTROLLER_VERSION=${version}" >> $GITHUB_ENV
 
       - name: Checkout repo
@@ -40,7 +37,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY_IMAGE }}
           tags: |
-            type=semver,pattern={{version}},value=${{ matrix.version }}
+            type=semver,pattern={{version}},value=${{ github.event.release.tag_name }}
             type=sha
       
       - name: Set up QEMU
@@ -63,7 +60,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            "UNIFI_CONTROLLER_VERSION=${{ matrix.version }}"
+            "UNIFI_CONTROLLER_VERSION=${{ github.event.release.tag_name }}"
           outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
@@ -75,7 +72,7 @@ jobs:
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          name: digests-${{ env.UNIFI_CONTROLLER_VERSION }}-${{ env.PLATFORM_PAIR }}
+          name: digests-${{ env.PLATFORM_PAIR }}
           path: /tmp/digests/*
           if-no-files-found: error
           retention-days: 1

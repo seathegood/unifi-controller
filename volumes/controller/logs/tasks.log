@@ -1,0 +1,338 @@
+[2024-01-27 02:45:06,930] <model-lifecycle-cache-refresh> DEBUG tasks  - Started task[model-lifecycle-cache-refresh]
+[2024-01-27 02:45:06,955] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:06,957] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:45:07,125] <model-lifecycle-cache-refresh> DEBUG tasks  - Finished task[model-lifecycle-cache-refresh] in 195 ms
+[2024-01-27 02:45:11,914] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:11,918] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 4 ms
+[2024-01-27 02:45:11,963] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:11,964] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:16,730] <device-state-check> DEBUG tasks  - Started task[device-state-check]
+[2024-01-27 02:45:16,736] <device-state-check> DEBUG tasks  - Finished task[device-state-check] in 6 ms
+[2024-01-27 02:45:16,926] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:16,929] <stamgr> DEBUG tasks  - Started task[stamgr]
+[2024-01-27 02:45:16,929] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 3 ms
+[2024-01-27 02:45:16,930] <wss-connection> DEBUG tasks  - Started task[wss-connection]
+[2024-01-27 02:45:16,931] <wss-connection> DEBUG tasks  - Finished task[wss-connection] in 1 ms
+[2024-01-27 02:45:16,932] <stamgr> DEBUG tasks  - Finished task[stamgr] in 3 ms
+[2024-01-27 02:45:16,965] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:16,966] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:16,966] <webrtc-connection> DEBUG tasks  - Started task[webrtc-connection]
+[2024-01-27 02:45:16,966] <webrtc-connection> DEBUG tasks  - Finished task[webrtc-connection] in 0 ms
+[2024-01-27 02:45:21,929] <facebook-wifi-token-validation> DEBUG tasks  - Started task[facebook-wifi-token-validation]
+[2024-01-27 02:45:21,930] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:21,930] <ips-alert-caching> DEBUG tasks  - Started task[ips-alert-caching]
+[2024-01-27 02:45:21,932] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:45:21,938] <facebook-wifi-token-validation> DEBUG tasks  - Finished task[facebook-wifi-token-validation] in 9 ms
+[2024-01-27 02:45:21,946] <ips-alert-caching> DEBUG tasks  - Finished task[ips-alert-caching] in 16 ms
+[2024-01-27 02:45:21,969] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:21,970] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:26,942] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:26,944] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:45:26,972] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:26,973] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:31,950] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:31,952] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:45:31,975] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:31,976] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:36,914] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:45:36,921] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 7 ms
+[2024-01-27 02:45:36,929] <lte-device-license-check> DEBUG tasks  - Started task[lte-device-license-check]
+[2024-01-27 02:45:36,937] <lte-device-license-check> DEBUG tasks  - Finished task[lte-device-license-check] in 8 ms
+[2024-01-27 02:45:36,954] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:36,955] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:45:36,981] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:36,982] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:41,956] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:41,959] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 3 ms
+[2024-01-27 02:45:41,986] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:41,987] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:46,960] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:46,961] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:45:46,989] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:46,990] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:51,968] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:51,970] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:45:51,995] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:51,996] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:45:56,976] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:45:56,979] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 3 ms
+[2024-01-27 02:45:56,999] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:45:57,000] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:01,982] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:01,985] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 3 ms
+[2024-01-27 02:46:02,002] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:02,003] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:06,913] <autolink-registry-flush> DEBUG tasks  - Started task[autolink-registry-flush]
+[2024-01-27 02:46:06,913] <live-performance-analytics> DEBUG tasks  - Started task[live-performance-analytics]
+[2024-01-27 02:46:06,913] <trigger-throttling-cache-flush> DEBUG tasks  - Started task[trigger-throttling-cache-flush]
+[2024-01-27 02:46:06,915] <autolink-registry-flush> DEBUG tasks  - Finished task[autolink-registry-flush] in 2 ms
+[2024-01-27 02:46:06,916] <trigger-throttling-cache-flush> DEBUG tasks  - Finished task[trigger-throttling-cache-flush] in 3 ms
+[2024-01-27 02:46:06,921] <live-performance-analytics> DEBUG tasks  - Finished task[live-performance-analytics] in 8 ms
+[2024-01-27 02:46:06,922] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:46:06,923] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 1 ms
+[2024-01-27 02:46:06,928] <crash-report> DEBUG tasks  - Started task[crash-report]
+[2024-01-27 02:46:06,928] <check-network-interfaces> DEBUG tasks  - Started task[check-network-interfaces]
+[2024-01-27 02:46:06,928] <autoupdate-check> DEBUG tasks  - Started task[autoupdate-check]
+[2024-01-27 02:46:06,929] <check-network-interfaces> DEBUG tasks  - Finished task[check-network-interfaces] in 1 ms
+[2024-01-27 02:46:06,933] <crash-report> DEBUG tasks  - Finished task[crash-report] in 5 ms
+[2024-01-27 02:46:06,933] <disk-usage-check> DEBUG tasks  - Started task[disk-usage-check]
+[2024-01-27 02:46:06,934] <sdn-connection> DEBUG tasks  - Started task[sdn-connection]
+[2024-01-27 02:46:06,938] <sdn-connection> DEBUG tasks  - Finished task[sdn-connection] in 4 ms
+[2024-01-27 02:46:06,939] <disk-usage-check> DEBUG tasks  - Finished task[disk-usage-check] in 6 ms
+[2024-01-27 02:46:06,940] <cache> DEBUG tasks  - Started task[cache]
+[2024-01-27 02:46:06,940] <print-time-series-cache-stats> DEBUG tasks  - Started task[print-time-series-cache-stats]
+[2024-01-27 02:46:06,941] <cache> DEBUG tasks  - Finished task[cache] in 1 ms
+[2024-01-27 02:46:06,941] <print-time-series-cache-stats> DEBUG tasks  - Finished task[print-time-series-cache-stats] in 1 ms
+[2024-01-27 02:46:06,986] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:06,986] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 0 ms
+[2024-01-27 02:46:07,006] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:07,006] <tracer> DEBUG tasks  - Finished task[tracer] in 0 ms
+[2024-01-27 02:46:07,513] <autoupdate-check> DEBUG tasks  - Finished task[autoupdate-check] in 585 ms
+[2024-01-27 02:46:11,987] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:11,987] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 0 ms
+[2024-01-27 02:46:12,007] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:12,007] <tracer> DEBUG tasks  - Finished task[tracer] in 0 ms
+[2024-01-27 02:46:16,738] <device-state-check> DEBUG tasks  - Started task[device-state-check]
+[2024-01-27 02:46:16,743] <device-state-check> DEBUG tasks  - Finished task[device-state-check] in 5 ms
+[2024-01-27 02:46:16,935] <stamgr> DEBUG tasks  - Started task[stamgr]
+[2024-01-27 02:46:16,937] <stamgr> DEBUG tasks  - Finished task[stamgr] in 2 ms
+[2024-01-27 02:46:16,967] <webrtc-connection> DEBUG tasks  - Started task[webrtc-connection]
+[2024-01-27 02:46:16,968] <webrtc-connection> DEBUG tasks  - Finished task[webrtc-connection] in 2 ms
+[2024-01-27 02:46:16,988] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:16,989] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:46:17,007] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:17,008] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:21,992] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:21,994] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:46:22,010] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:22,011] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:26,997] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:26,999] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:46:27,013] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:27,014] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:32,003] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:32,004] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:46:32,015] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:32,016] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:36,924] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:46:36,928] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 4 ms
+[2024-01-27 02:46:37,007] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:37,009] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:46:37,017] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:37,018] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:42,011] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:42,013] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:46:42,019] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:42,020] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:47,017] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:47,018] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:46:47,020] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:47,021] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:52,020] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:52,022] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:46:52,022] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:52,023] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:46:57,023] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:46:57,025] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:46:57,025] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:46:57,026] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:47:02,030] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:02,030] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:02,032] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:47:02,033] <tracer> DEBUG tasks  - Finished task[tracer] in 3 ms
+[2024-01-27 02:47:06,916] <autolink-registry-flush> DEBUG tasks  - Started task[autolink-registry-flush]
+[2024-01-27 02:47:06,917] <trigger-throttling-cache-flush> DEBUG tasks  - Started task[trigger-throttling-cache-flush]
+[2024-01-27 02:47:06,917] <autolink-registry-flush> DEBUG tasks  - Finished task[autolink-registry-flush] in 1 ms
+[2024-01-27 02:47:06,917] <trigger-throttling-cache-flush> DEBUG tasks  - Finished task[trigger-throttling-cache-flush] in 0 ms
+[2024-01-27 02:47:06,922] <live-performance-analytics> DEBUG tasks  - Started task[live-performance-analytics]
+[2024-01-27 02:47:06,923] <live-performance-analytics> DEBUG tasks  - Finished task[live-performance-analytics] in 2 ms
+[2024-01-27 02:47:06,930] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:47:06,931] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 1 ms
+[2024-01-27 02:47:06,932] <check-network-interfaces> DEBUG tasks  - Started task[check-network-interfaces]
+[2024-01-27 02:47:06,933] <check-network-interfaces> DEBUG tasks  - Finished task[check-network-interfaces] in 1 ms
+[2024-01-27 02:47:07,035] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:07,036] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:47:07,035] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:07,039] <tracer> DEBUG tasks  - Finished task[tracer] in 4 ms
+[2024-01-27 02:47:12,038] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:12,040] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:12,040] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:47:12,041] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:47:16,743] <device-state-check> DEBUG tasks  - Started task[device-state-check]
+[2024-01-27 02:47:16,750] <device-state-check> DEBUG tasks  - Finished task[device-state-check] in 7 ms
+[2024-01-27 02:47:16,939] <stamgr> DEBUG tasks  - Started task[stamgr]
+[2024-01-27 02:47:16,940] <stamgr> DEBUG tasks  - Finished task[stamgr] in 1 ms
+[2024-01-27 02:47:16,968] <webrtc-connection> DEBUG tasks  - Started task[webrtc-connection]
+[2024-01-27 02:47:16,969] <webrtc-connection> DEBUG tasks  - Finished task[webrtc-connection] in 1 ms
+[2024-01-27 02:47:17,041] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:17,042] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:17,043] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:47:17,044] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:47:22,046] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:22,046] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:22,048] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:47:22,048] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:47:27,050] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:27,050] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:27,051] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:47:27,052] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:47:32,053] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:32,053] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:32,055] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:47:32,056] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 3 ms
+[2024-01-27 02:47:36,932] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:47:36,934] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 2 ms
+[2024-01-27 02:47:37,057] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:37,058] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:47:37,058] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:37,059] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:47:42,059] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:42,060] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:42,060] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:47:42,061] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:47:47,061] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:47,061] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:47,061] <tracer> DEBUG tasks  - Finished task[tracer] in 0 ms
+[2024-01-27 02:47:47,061] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 0 ms
+[2024-01-27 02:47:52,064] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:52,064] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:52,067] <tracer> DEBUG tasks  - Finished task[tracer] in 3 ms
+[2024-01-27 02:47:52,068] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 4 ms
+[2024-01-27 02:47:57,069] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:47:57,069] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:47:57,070] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:47:57,070] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:48:02,072] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:02,072] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:02,074] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:48:02,074] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:48:06,752] <duplicate-ip-service> DEBUG tasks  - Started task[duplicate-ip-service]
+[2024-01-27 02:48:06,754] <document-pruning-by-count> DEBUG tasks  - Started task[document-pruning-by-count]
+[2024-01-27 02:48:06,770] <duplicate-ip-service> DEBUG tasks  - Finished task[duplicate-ip-service] in 18 ms
+[2024-01-27 02:48:06,782] <document-pruning-by-count> DEBUG tasks  - Finished task[document-pruning-by-count] in 28 ms
+[2024-01-27 02:48:06,917] <autolink-registry-flush> DEBUG tasks  - Started task[autolink-registry-flush]
+[2024-01-27 02:48:06,917] <trigger-throttling-cache-flush> DEBUG tasks  - Started task[trigger-throttling-cache-flush]
+[2024-01-27 02:48:06,918] <autolink-registry-flush> DEBUG tasks  - Finished task[autolink-registry-flush] in 1 ms
+[2024-01-27 02:48:06,918] <trigger-throttling-cache-flush> DEBUG tasks  - Finished task[trigger-throttling-cache-flush] in 1 ms
+[2024-01-27 02:48:06,923] <live-performance-analytics> DEBUG tasks  - Started task[live-performance-analytics]
+[2024-01-27 02:48:06,924] <live-performance-analytics> DEBUG tasks  - Finished task[live-performance-analytics] in 1 ms
+[2024-01-27 02:48:06,926] <scan-cache-clean> DEBUG tasks  - Started task[scan-cache-clean]
+[2024-01-27 02:48:06,933] <scan-cache-clean> DEBUG tasks  - Finished task[scan-cache-clean] in 7 ms
+[2024-01-27 02:48:06,934] <check-network-interfaces> DEBUG tasks  - Started task[check-network-interfaces]
+[2024-01-27 02:48:06,935] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:48:06,935] <check-network-interfaces> DEBUG tasks  - Finished task[check-network-interfaces] in 1 ms
+[2024-01-27 02:48:06,935] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 0 ms
+[2024-01-27 02:48:07,077] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:07,077] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:07,078] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:48:07,078] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:48:12,080] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:12,080] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:12,082] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:48:12,082] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:48:16,753] <device-state-check> DEBUG tasks  - Started task[device-state-check]
+[2024-01-27 02:48:16,758] <device-state-check> DEBUG tasks  - Finished task[device-state-check] in 5 ms
+[2024-01-27 02:48:16,941] <stamgr> DEBUG tasks  - Started task[stamgr]
+[2024-01-27 02:48:16,942] <stamgr> DEBUG tasks  - Finished task[stamgr] in 1 ms
+[2024-01-27 02:48:16,970] <webrtc-connection> DEBUG tasks  - Started task[webrtc-connection]
+[2024-01-27 02:48:16,970] <webrtc-connection> DEBUG tasks  - Finished task[webrtc-connection] in 0 ms
+[2024-01-27 02:48:17,084] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:17,084] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:17,085] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:48:17,086] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:48:19,907] <wifi-connection-events-prune> DEBUG tasks  - Started task[wifi-connection-events-prune]
+[2024-01-27 02:48:19,919] <wifi-connection-events-prune> DEBUG tasks  - Finished task[wifi-connection-events-prune] in 12 ms
+[2024-01-27 02:48:22,087] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:22,087] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:22,088] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:48:22,088] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:48:27,090] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:27,090] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:27,091] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:48:27,091] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:48:32,095] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:32,095] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:32,096] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:48:32,097] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:48:36,939] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:48:36,941] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 2 ms
+[2024-01-27 02:48:37,098] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:37,099] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:37,099] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:48:37,100] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:48:42,101] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:42,101] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:42,103] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:48:42,103] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:48:47,105] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:47,105] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:47,106] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:48:47,107] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:48:52,109] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:52,109] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:52,110] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:48:52,110] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:48:57,114] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:48:57,114] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:48:57,115] <tracer> DEBUG tasks  - Finished task[tracer] in 0 ms
+[2024-01-27 02:48:57,115] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:49:02,117] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:02,117] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:02,118] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:49:02,118] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:49:06,734] <device-connect-incidents> DEBUG tasks  - Started task[device-connect-incidents]
+[2024-01-27 02:49:06,738] <device-connect-incidents> DEBUG tasks  - Finished task[device-connect-incidents] in 4 ms
+[2024-01-27 02:49:06,773] <duplicate-ip-service> DEBUG tasks  - Started task[duplicate-ip-service]
+[2024-01-27 02:49:06,777] <duplicate-ip-service> DEBUG tasks  - Finished task[duplicate-ip-service] in 4 ms
+[2024-01-27 02:49:06,919] <autolink-registry-flush> DEBUG tasks  - Started task[autolink-registry-flush]
+[2024-01-27 02:49:06,919] <trigger-throttling-cache-flush> DEBUG tasks  - Started task[trigger-throttling-cache-flush]
+[2024-01-27 02:49:06,919] <autolink-registry-flush> DEBUG tasks  - Finished task[autolink-registry-flush] in 0 ms
+[2024-01-27 02:49:06,919] <trigger-throttling-cache-flush> DEBUG tasks  - Finished task[trigger-throttling-cache-flush] in 0 ms
+[2024-01-27 02:49:06,925] <live-performance-analytics> DEBUG tasks  - Started task[live-performance-analytics]
+[2024-01-27 02:49:06,925] <live-performance-analytics> DEBUG tasks  - Finished task[live-performance-analytics] in 0 ms
+[2024-01-27 02:49:06,936] <check-network-interfaces> DEBUG tasks  - Started task[check-network-interfaces]
+[2024-01-27 02:49:06,937] <check-network-interfaces> DEBUG tasks  - Finished task[check-network-interfaces] in 1 ms
+[2024-01-27 02:49:06,943] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:49:06,943] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 0 ms
+[2024-01-27 02:49:07,121] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:07,121] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:07,121] <tracer> DEBUG tasks  - Finished task[tracer] in 0 ms
+[2024-01-27 02:49:07,122] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:49:12,126] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:12,126] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:12,127] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:49:12,128] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:49:16,759] <device-state-check> DEBUG tasks  - Started task[device-state-check]
+[2024-01-27 02:49:16,764] <device-state-check> DEBUG tasks  - Finished task[device-state-check] in 5 ms
+[2024-01-27 02:49:16,944] <stamgr> DEBUG tasks  - Started task[stamgr]
+[2024-01-27 02:49:16,945] <stamgr> DEBUG tasks  - Finished task[stamgr] in 2 ms
+[2024-01-27 02:49:16,972] <webrtc-connection> DEBUG tasks  - Started task[webrtc-connection]
+[2024-01-27 02:49:16,973] <webrtc-connection> DEBUG tasks  - Finished task[webrtc-connection] in 1 ms
+[2024-01-27 02:49:17,130] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:17,130] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:17,131] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:49:17,131] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:49:22,132] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:22,132] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:22,134] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:49:22,135] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 3 ms
+[2024-01-27 02:49:27,140] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:27,140] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:27,141] <tracer> DEBUG tasks  - Finished task[tracer] in 1 ms
+[2024-01-27 02:49:27,141] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 1 ms
+[2024-01-27 02:49:32,147] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:32,147] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:32,149] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:49:32,149] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms
+[2024-01-27 02:49:36,739] <device-connect-incidents> DEBUG tasks  - Started task[device-connect-incidents]
+[2024-01-27 02:49:36,741] <device-connect-incidents> DEBUG tasks  - Finished task[device-connect-incidents] in 2 ms
+[2024-01-27 02:49:36,946] <ble_bridge_discovery> DEBUG tasks  - Started task[ble_bridge_discovery]
+[2024-01-27 02:49:36,948] <ble_bridge_discovery> DEBUG tasks  - Finished task[ble_bridge_discovery] in 2 ms
+[2024-01-27 02:49:37,154] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:37,154] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:37,154] <tracer> DEBUG tasks  - Finished task[tracer] in 0 ms
+[2024-01-27 02:49:37,154] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 0 ms
+[2024-01-27 02:49:42,160] <tracer> DEBUG tasks  - Started task[tracer]
+[2024-01-27 02:49:42,160] <ble_state_check> DEBUG tasks  - Started task[ble_state_check]
+[2024-01-27 02:49:42,162] <tracer> DEBUG tasks  - Finished task[tracer] in 2 ms
+[2024-01-27 02:49:42,162] <ble_state_check> DEBUG tasks  - Finished task[ble_state_check] in 2 ms

@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
-
-# entrypoint-functions.sh script for UniFi running within a container
-# License: MIT
-ENTRYPOINT_FUNCTIONS_VERSION="1.0"
-# Last updated date: 2021-11-15
+#================================================================
+# TITLE: Entrypoint Functions
+# AUTHOR: Michael Ross
+# LICENSE: MIT
+#
+# DESCRIPTION:
+#   Functions used in entrypoint.sh
+#
+#  HISTORY
+#   2015/03/01 : Initial version copied from
+#   2024/01/27 : Added -L flag to chown command so that symbolic
+#                symbolic links are properly traversed into the
+#                data, logs, and run directories
+# 
+#================================================================
+ENTRYPOINT_FUNCTIONS_VERSION="1.1"
 
 f_bindpriv() {
     JAVABIN=$(readlink -f /usr/bin/java)
@@ -26,21 +37,21 @@ f_chown() {
         || [ ! "$(stat -c %u ${DATADIR})" = "${PUID}" ] || [ ! "$(stat -c %u ${LOGDIR})" = "${PUID}" ] \
         || [ ! "$(stat -c %u ${RUNDIR})" = "${PUID}" ]; then
             f_log "WARN - Configured PUID doesn't match owner of a required directory. Ignoring RUN_CHOWN=false"
-            f_log "INFO - Ensuring permissions are correct before continuing - 'chown -R unifi:unifi ${BASEDIR}'"
+            f_log "INFO - Ensuring permissions are correct before continuing - 'chown -R -L unifi:unifi ${BASEDIR}'"
             f_log "INFO - Running recursive 'chown' can be slow. Be patient."
-            chown -R unifi:unifi ${BASEDIR}
+            chown -R -L unifi:unifi ${BASEDIR}
         else
             f_log "INFO - Explicitly setting owner on '${LOGDIR}/*.log' and '${DATADIR}/system.properties'"
             chown unifi:unifi ${DATADIR}/system.properties
             chown unifi:unifi ${LOGDIR}/*.log
-            f_log "INFO - RUN_CHOWN=false - Not running 'chown -R unifi:unifi ${BASEDIR}', assume subdir/file permissions OK"
+            f_log "INFO - RUN_CHOWN=false - Not running 'chown -R -L unifi:unifi ${BASEDIR}', assume subdir/file permissions OK"
         fi
     elif [ "${RUNAS_UID0}" == 'true' ]; then
-        f_log "INFO - RUNAS_UID0=true - Not running 'chown -R unifi:unifi ${BASEDIR}', no need to worry about permissions."
+        f_log "INFO - RUNAS_UID0=true - Not running 'chown -R -L unifi:unifi ${BASEDIR}', no need to worry about permissions."
     else
         f_log "INFO - Ensuring permissions are correct before continuing - 'chown -R unifi:unifi ${BASEDIR}'"
         f_log "INFO - Running recursive 'chown' can be slow. Be patient."
-        chown -R unifi:unifi ${BASEDIR}
+        chown -R -L unifi:unifi ${BASEDIR}
     fi
 }
 

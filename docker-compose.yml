@@ -9,7 +9,7 @@ services:
     build:
       context: .
       args:
-        UNIFI_CONTROLLER_VERSION: "8.0.28-66495b8e3a"
+        UNIFI_CONTROLLER_VERSION: "8.0.28"
     hostname: unifi
     domainname: seathegood.net
     ports:
@@ -40,10 +40,3 @@ services:
     depends_on:
       - mongo
     restart: unless-stopped
-
-networks:
-  frontend:
-    external: true
-    name: macvlan99
-  backend:
-    internal: true

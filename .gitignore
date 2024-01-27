@@ -4,4 +4,4 @@
 .DS_Store
 
 # Project files generated through testing
-./volumes
+./volumes/

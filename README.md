@@ -1,15 +1,15 @@
-# Standalone Unifi Controller
+# Standalone Unifi Network Controller
 
 ## Overview
-This Dockerized Unifi Controller project is designed to simplify network setups by consolidating network services onto a single system. Utilizing extensive insights from Ubiquiti's documentation and a thorough analysis of the Unifi Cloud Key Gen 2, it offers a robust, Debian Bullseye-based solution. Special attention has been given to folder structure and package selection to ensure compatibility and an optimal user experience. Additionally, this project diverges from the typical Unifi Controller setup by requiring MongoDB to run in a separate container, adhering to best practices in containerized infrastructure management.
+This Dockerized Unifi Network Controller project is designed to simplify network setups by consolidating network services into a single system. Utilizing extensive insights from Ubiquiti's documentation and a thorough analysis of the Unifi Cloud Key Gen 2, it offers a robust, Debian Bullseye-based solution. Special attention has been given to folder structure and package selection to ensure compatibility and an optimal user experience. Additionally, this project diverges from the typical Unifi Controller setup by requiring MongoDB to run in a separate container, adhering to best practices in containerized infrastructure management.
 
 ## Features
-- **Docker-Based Unifi Controller**: Streamlines network management by reducing physical hardware needs.
+- **Docker-Based Unifi Network Controller**: Streamlines network management by reducing physical hardware needs.
 - **Informed by Ubiquiti's Official Documentation**: Developed with insights from comprehensive research.
 - **Optimized for Debian Bullseye**: Configured to align with Debian Bullseye for stability and compatibility.
 - **Separate MongoDB Instance**: Aligns with containerized infrastructure best practices for better scalability and manageability.
 - **User-Friendly Experience**: Ensures a smooth, hassle-free setup and operational process.
-- **Secure and Reliable**: Focuses on security, following best practices for container and network safety.
+- **Secure and Reliable**: Focuses on security, following best container and network safety practices.
 
 ## Requirements
 - Docker and Docker Compose

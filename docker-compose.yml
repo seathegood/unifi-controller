@@ -1,15 +1,15 @@
 services:
   mongo:
-    image: "mongo:3.6"
-    command: --wiredTigerCacheSizeGB 1 --smallfiles
+    image: "mongo:4.4"
+    command: --journal --wiredTigerCacheSizeGB 1
     volumes:
-      - "./volumes/mongo/data/db:/data/db"
+      - "./mongo/data/db:/data/db"
     restart: unless-stopped
   controller:
     build:
       context: .
       args:
-        UNIFI_CONTROLLER_VERSION: "8.0.28"
+        UNIFI_CONTROLLER_VERSION: "8.1.104-75ec9ec4f1"
     hostname: unifi
     domainname: seathegood.net
     ports:
@@ -28,9 +28,9 @@ services:
       - "123:123/udp"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - "./volumes/controller/cert:/usr/lib/unifi/cert"
-      - "./volumes/controller/data:/usr/lib/unifi/data"
-      - "./volumes/controller/logs:/usr/lib/unifi/logs"
+      - "./unifi-controller/cert:/usr/lib/unifi/cert"
+      - "./unifi-controller/data:/usr/lib/unifi/data"
+      - "./unifi-controller/logs:/usr/lib/unifi/logs"
     environment:
       - "DB_MONGO_LOCAL=false"
       - "DB_MONGO_URI=mongodb://mongo:27017/unifi"

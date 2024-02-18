@@ -1,11 +1,13 @@
 services:
+
   mongo:
     image: "mongo:4.4"
     command: --journal --wiredTigerCacheSizeGB 1
     volumes:
       - "./mongo/data/db:/data/db"
     restart: unless-stopped
-  controller:
+
+  unifi-controller:
     build:
       context: .
       args:

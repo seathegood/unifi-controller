@@ -36,7 +36,7 @@ f_chown() {
         if [ ! "$(stat -c %u ${BASEDIR})" = "${PUID}" ] || [ ! "$(stat -c %u ${CERTDIR})" = "${PUID}" ] \
         || [ ! "$(stat -c %u ${DATADIR})" = "${PUID}" ] || [ ! "$(stat -c %u ${LOGDIR})" = "${PUID}" ] \
         || [ ! "$(stat -c %u ${RUNDIR})" = "${PUID}" ]; then
-            f_log "WARN - Configured PUID doesn't match owner of a required directory. Ignoring RUN_CHOWN=false"
+            f_log "WARN - Configured PUID doesn't match owner of a required directory."
             f_log "INFO - Ensuring permissions are correct before continuing - 'chown -R -L unifi:unifi ${BASEDIR}'"
             f_log "INFO - Running recursive 'chown' can be slow. Be patient."
             chown -R -L unifi:unifi ${BASEDIR}

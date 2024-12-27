@@ -22,6 +22,15 @@ RUNDIR=${BASEDIR}/run
 f_log "INFO - Entrypoint script version ${SCRIPT_VERSION}"
 f_log "INFO - Entrypoint functions version ${ENTRYPOINT_FUNCTIONS_VERSION}"
 
+f_log "INFO - Ensuring required directories exist"
+for dir in ${CERTDIR} ${DATADIR} ${LOGDIR} ${RUNDIR}; do
+    if [ ! -d "${dir}" ]; then
+        f_log "ERROR - Missing directory: ${dir}. Creating it."
+        mkdir -p "${dir}"
+        chown unifi:unifi "${dir}"
+    fi
+done
+
 [ ! -z "${JVM_MAX_HEAP_SIZE}" ] && JVM_EXTRA_OPTS="${JVM_EXTRA_OPTS} -Xmx${JVM_MAX_HEAP_SIZE}"
 [ ! -z "${JVM_INIT_HEAP_SIZE}" ] && JVM_EXTRA_OPTS="${JVM_EXTRA_OPTS} -Xms${JVM_INIT_HEAP_SIZE}"
 

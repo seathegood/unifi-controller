@@ -2,8 +2,8 @@
 
 # entrypoint.sh script for UniFi running within a container
 # License: MIT
-SCRIPT_VERSION="1.0"
-# Last updated date: 2021-11-15
+SCRIPT_VERSION="1.1"
+# Last updated date: 2024-12-27
 
 set -Eeuo pipefail
 

@@ -39,14 +39,10 @@ RUN set -x \
 # install unifi dependencies
 RUN set -x \
     && fetchDeps=' \
-#       apt-transport-https \
         binutils \
         ca-certificates \
         curl \
         gosu \
-#       gpg \
-#       gpg-agent \
-#       jsvc \
         libcap2 \
         libcap2-bin \
         libpsl5 \

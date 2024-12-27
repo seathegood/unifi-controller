@@ -36,6 +36,11 @@ RUN set -x \
 	&& groupadd -r unifi -g $PGID \
 	&& useradd --no-log-init -r -u $PUID -g $PGID unifi
 
+# setup directory structure for unifi
+RUN mkdir -p /usr/lib/unifi/data /usr/lib/unifi/logs /usr/lib/unifi/run /usr/lib/unifi/cert \
+    && chown -R unifi:unifi /usr/lib/unifi \
+    && ls -ld /usr/lib/unifi/*
+
 # install unifi dependencies
 RUN set -x \
     && fetchDeps=' \
@@ -62,12 +67,9 @@ RUN set -x \
 WORKDIR /usr/lib/unifi
 RUN curl --show-error --silent --location https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
     && dpkg --force-all -i /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
-    && mkdir -p /usr/lib/unifi/data /usr/lib/unifi/logs /usr/lib/unifi/run /usr/lib/unifi/cert \
-    && chown -R unifi:unifi /usr/lib/unifi \
-    && ls -ld /usr/lib/unifi/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
 
-
+# setup port and volume options
 EXPOSE 3478/udp 5514/udp 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 27117/tcp 10001/udp 1900/udp 123/udp 
 
 VOLUME ["/usr/lib/unifi/cert", "/usr/lib/unifi/data", "/usr/lib/unifi/logs"]

@@ -28,6 +28,9 @@ for dir in ${CERTDIR} ${DATADIR} ${LOGDIR} ${RUNDIR}; do
         f_log "ERROR - Missing directory: ${dir}. Creating it."
         mkdir -p "${dir}"
         chown unifi:unifi "${dir}"
+    else 
+        f_log "INFO - Verifying ownership of mounted directories"
+        chown -R unifi:unifi ${CERTDIR} ${DATADIR} ${LOGDIR} ${RUNDIR}
     fi
 done
 

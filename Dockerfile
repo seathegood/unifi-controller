@@ -68,7 +68,9 @@ RUN curl --show-error --silent --location https://dl.ui.com/unifi/${UNIFI_CONTRO
     && dpkg --force-all -i /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
     && mkdir -p /usr/lib/unifi/data /usr/lib/unifi/logs /usr/lib/unifi/run /usr/lib/unifi/cert \
     && chown -R unifi:unifi /usr/lib/unifi \
+    && ls -ld /usr/lib/unifi/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
+
 
 EXPOSE 3478/udp 5514/udp 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 27117/tcp 10001/udp 1900/udp 123/udp 
 

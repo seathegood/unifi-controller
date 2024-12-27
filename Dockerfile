@@ -66,7 +66,7 @@ RUN set -x \
 WORKDIR /usr/lib/unifi
 RUN curl --show-error --silent --location https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
     && dpkg --force-all -i /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
-    && bash -c 'mkdir -p {data,logs,run,cert}' \
+    && mkdir -p /usr/lib/unifi/data /usr/lib/unifi/logs /usr/lib/unifi/run /usr/lib/unifi/cert \
     && chown -R unifi:unifi /usr/lib/unifi \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
 

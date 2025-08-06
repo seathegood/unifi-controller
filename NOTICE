@@ -1,0 +1,6 @@
+
+This product includes software developed by Sea the Good, LLC.
+
+This container image packages the UniFi Controller software, which is distributed by Ubiquiti Inc. under their End User License Agreement. Visit https://www.ui.com/download/unifi for details.
+
+Additional components may be included under their respective open-source licenses. See THIRD_PARTY.md for more information.

@@ -1,9 +1,10 @@
+# shellcheck shell=bash
 #!/usr/bin/env bash
 
 # entrypoint.sh script for UniFi running within a container
 # License: MIT
-SCRIPT_VERSION="1.1"
-# Last updated date: 2024-12-27
+SCRIPT_VERSION="1.2"
+# Last updated date: 2025-08-06
 
 set -Eeuo pipefail
 
@@ -12,6 +13,8 @@ if [ "${DEBUG}" == 'true' ]; then
 fi
 
 . /usr/local/bin/entrypoint-functions.sh
+
+command -v java >/dev/null 2>&1 || { f_log "ERROR - Java not found"; exit 1; }
 
 BASEDIR="/usr/lib/unifi"
 CERTDIR=${BASEDIR}/cert
@@ -30,16 +33,20 @@ for dir in ${CERTDIR} ${DATADIR} ${LOGDIR} ${RUNDIR}; do
         chown unifi:unifi "${dir}"
     else 
         f_log "INFO - Verifying ownership of mounted directories"
-        chown -R unifi:unifi ${CERTDIR} ${DATADIR} ${LOGDIR} ${RUNDIR}
+        chown -R unifi:unifi "${CERTDIR}" "${DATADIR}" "${LOGDIR}" "${RUNDIR}"
     fi
 done
 
-[ ! -z "${JVM_MAX_HEAP_SIZE}" ] && JVM_EXTRA_OPTS="${JVM_EXTRA_OPTS} -Xmx${JVM_MAX_HEAP_SIZE}"
-[ ! -z "${JVM_INIT_HEAP_SIZE}" ] && JVM_EXTRA_OPTS="${JVM_EXTRA_OPTS} -Xms${JVM_INIT_HEAP_SIZE}"
+[ -n "${JVM_MAX_HEAP_SIZE}" ] && JVM_EXTRA_OPTS="${JVM_EXTRA_OPTS} -Xmx${JVM_MAX_HEAP_SIZE}"
+[ -n "${JVM_INIT_HEAP_SIZE}" ] && JVM_EXTRA_OPTS="${JVM_EXTRA_OPTS} -Xms${JVM_INIT_HEAP_SIZE}"
 
 JVM_EXTRA_OPTS="${JVM_EXTRA_OPTS} --add-opens=java.base/java.time=ALL-UNNAMED -Dunifi.datadir=${DATADIR} -Dunifi.logdir=${LOGDIR} -Dunifi.rundir=${RUNDIR}"
 
 JVM_OPTS="${JVM_EXTRA_OPTS} -Djava.awt.headless=true -Dfile.encoding=UTF-8"
+
+if [ "${DEBUG}" == 'true' ]; then
+    f_log "INFO - JVM_OPTS: ${JVM_OPTS}"
+fi
 
 cd ${BASEDIR}
 
@@ -60,10 +67,7 @@ f_exit_handler() {
 }
 
 f_idle_handler() {
-    while true
-    do
-        tail -f /dev/null & wait ${!}
-    done
+    exec tail -f /dev/null
 }
 
 trap 'kill ${!}; f_exit_handler' SIGHUP SIGINT SIGQUIT SIGTERM
@@ -118,4 +122,5 @@ else
     fi
 fi
 
+exec "$@"
 exit 1;

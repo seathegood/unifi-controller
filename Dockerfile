@@ -2,7 +2,7 @@
 FROM debian:bullseye
 
 # Build arguments
-ARG UNIFI_CONTROLLER_VERSION
+ARG UNIFI_CONTROLLER_VERSION=9.3.45
 ARG BUILD_DATE
 ARG VCS_REF
 
@@ -69,7 +69,8 @@ RUN set -x \
 
 # download and install the unifi controller
 WORKDIR /usr/lib/unifi
-RUN curl --show-error --silent --location https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
+RUN curl --fail --silent --location https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
+    && file /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb | grep -q "Debian binary package" \
     && dpkg --force-all -i /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
 

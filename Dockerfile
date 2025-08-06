@@ -1,18 +1,22 @@
 # base image
 FROM debian:bullseye
 
-# Local Arguements
+# Build arguments
 ARG UNIFI_CONTROLLER_VERSION
+ARG BUILD_DATE
+ARG VCS_REF
 
-# image labels using OPI spec
+# OCI-compliant image labels
 LABEL \
-	org.opencontainers.image.vendor="Sea the Good, LLC" \
-	org.opencontainers.image.url="https://github.com/seathegood/unifi" \
-	org.opencontainers.image.title="Unifi Controller" \
-	org.opencontainers.image.description="Unifi Controller without a local MongoDB instance" \
-	org.opencontainers.image.version=${UNIFI_CONTROLLER_VERSION} \
-	org.opencontainers.image.source="https://github.com/seathegood/unifi-controller" \
-	org.opencontainers.image.licenses="MIT"
+    org.opencontainers.image.title="Unifi Controller" \
+    org.opencontainers.image.description="Unifi Controller without a local MongoDB instance" \
+    org.opencontainers.image.url="https://github.com/seathegood/unifi-controller" \
+    org.opencontainers.image.source="https://github.com/seathegood/unifi-controller" \
+    org.opencontainers.image.version="${UNIFI_CONTROLLER_VERSION}" \
+    org.opencontainers.image.created="${BUILD_DATE}" \
+    org.opencontainers.image.revision="${VCS_REF}" \
+    org.opencontainers.image.vendor="Sea the Good, LLC" \
+    org.opencontainers.image.licenses="MIT"
 
 # build environment variables
 ENV \

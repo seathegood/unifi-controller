@@ -8,10 +8,8 @@ services:
     restart: unless-stopped
 
   unifi-controller:
-    build:
-      context: .
-      args:
-        UNIFI_CONTROLLER_VERSION: "8.1.107-1c7ac40f1d"
+    image: seathegood/unifi-controller:latest
+    pull_policy: never
     hostname: unifi
     domainname: seathegood.net
     ports:

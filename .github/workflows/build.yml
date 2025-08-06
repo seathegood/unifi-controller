@@ -40,6 +40,11 @@ jobs:
             org.opencontainers.image.vendor=Sea the Good, LLC
             org.opencontainers.image.licenses=MIT
 
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+
       - name: Build image
         uses: docker/build-push-action@v5
         with:

@@ -1,0 +1,6 @@
+ignored:
+  - DL3008  # Do not require version pinning in apt-get install
+
+failure-threshold: warning
+no-color: true
+format: tty

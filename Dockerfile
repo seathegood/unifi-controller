@@ -63,7 +63,7 @@ RUN set -x \
         wget \
     ' \
     && apt-get update \
-    && apt-get install -y --no-install-recommends "$fetchDeps" \
+    && apt-get install -y --no-install-recommends $fetchDeps \
     && apt-get autoremove --purge \
     && apt-get clean autoclean 
 

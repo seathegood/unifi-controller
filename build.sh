@@ -6,6 +6,16 @@ VERSION=""
 CLEAN=false
 PUSH=false
 
+# Detect the local docker platform for --load builds
+_detect_local_platform() {
+  case "$(uname -m)" in
+    x86_64) echo "linux/amd64" ;;
+    arm64|aarch64) echo "linux/arm64" ;;
+    *) echo "linux/amd64" ;;
+  esac
+}
+LOCAL_PLATFORM="$(_detect_local_platform)"
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --version)
@@ -41,7 +51,6 @@ echo "Building Docker image for version ${VERSION}..."
 
 BUILD_CMD=(
   docker buildx build
-  --platform linux/amd64,linux/arm64
   --tag "${IMAGE_NAME}:${VERSION}"
   --tag "${IMAGE_NAME}:latest"
   --build-arg UNIFI_CONTROLLER_VERSION="${VERSION}"
@@ -52,7 +61,10 @@ BUILD_CMD=(
 )
 
 if $PUSH; then
-  BUILD_CMD+=(--push)
+  BUILD_CMD+=(--platform linux/amd64,linux/arm64 --push)
+else
+  echo "Local build: using platform ${LOCAL_PLATFORM} with --load"
+  BUILD_CMD+=(--platform "${LOCAL_PLATFORM}" --load)
 fi
 
 BUILD_CMD+=(.)

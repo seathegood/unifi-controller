@@ -1,5 +1,6 @@
 # base image
 FROM debian:bullseye
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Build arguments
 ARG UNIFI_CONTROLLER_VERSION=9.3.45
@@ -70,10 +71,12 @@ RUN set -x \
 # download and install the unifi controller
 WORKDIR /usr/lib/unifi
 RUN echo "Fetching: https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb"
-RUN curl --fail --silent --location https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb -o /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
-    && file /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb | grep -q "Debian binary package" \
-    && dpkg --force-all -i /tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
+RUN curl --fail --silent --show-error --location "https://dl.ui.com/unifi/${UNIFI_CONTROLLER_VERSION}/unifi_sysvinit_all.deb" \
+      -o "/tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb" \
+  && dpkg-deb --info "/tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb" > /dev/null \
+  && test -n "$(dpkg-deb --field "/tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb" Package)" \
+  && dpkg --force-all -i "/tmp/unifi-${UNIFI_CONTROLLER_VERSION}.deb" \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
 
 # setup port and volume options
 EXPOSE 3478/udp 5514/udp 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 27117/tcp 10001/udp 1900/udp 123/udp 

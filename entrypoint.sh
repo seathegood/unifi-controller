@@ -1,6 +1,5 @@
-# shellcheck shell=bash
 #!/usr/bin/env bash
-
+# shellcheck shell=bash
 # entrypoint.sh script for UniFi running within a container
 # License: MIT
 SCRIPT_VERSION="1.2"

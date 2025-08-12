@@ -21,4 +21,16 @@ if not matches:
     sys.exit(1)
 
 latest_version = sorted(matches, key=version.parse, reverse=True)[0]
+
+try:
+    with open('./versions.txt', 'r') as f:
+        versions = [line.strip() for line in f.readlines()]
+except FileNotFoundError:
+    versions = []
+
+if latest_version in versions:
+    print(f"Version {latest_version} already exists in versions.txt")
+    sys.exit(0)
+
 print(latest_version)
+sys.exit(0)

@@ -3,5 +3,5 @@
 .DS_Store
 
 # Project files generated through testing
-./mongo/
-./unifi-controller/
+**/mongo
+**/unifi-controller

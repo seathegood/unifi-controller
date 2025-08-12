@@ -1,5 +1,3 @@
-
-
 name: Check for Upstream UniFi Version
 
 on:
@@ -28,16 +26,12 @@ jobs:
           NEW_VERSION=$(python .github/scripts/check_unifi_version.py)
           echo "new_version=${NEW_VERSION}" >> $GITHUB_OUTPUT
 
-      - name: Compare with existing tags
-        run: |
-          git fetch --tags
-          VERSION_TAG="v${{ steps.check.outputs.new_version }}"
-          if git tag | grep -Fxq "$VERSION_TAG"; then
-            echo "Version $VERSION_TAG already released. Exiting."
-            exit 0
-          fi
+      - name: No new version detected
+        if: ${{ steps.check.outputs.new_version == '' }}
+        run: echo "No new UniFi version detected; exiting successfully."
 
       - name: Create Pull Request
+        if: ${{ steps.check.outputs.new_version != '' }}
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "chore: update to UniFi ${{ steps.check.outputs.new_version }}"
@@ -46,4 +40,15 @@ jobs:
             This pull request updates UniFi Controller to version ${{ steps.check.outputs.new_version }}.
             Please review and test before merging.
           branch: "unifi-update-${{ steps.check.outputs.new_version }}"
-          delete-branch: true
+          delete-branch: true</file>
+      
+      - name: Update versions.txt
+        if: ${{ steps.check.outputs.new_version != '' }}
+        run: |
+          touch versions.txt
+          if ! grep -Fxq "${{ steps.check.outputs.new_version }}" versions.txt; then
+            echo "${{ steps.check.outputs.new_version }}" >> versions.txt
+            echo "Appended ${{ steps.check.outputs.new_version }} to versions.txt"
+          else
+            echo "Version already present in versions.txt; skipping."
+          fi

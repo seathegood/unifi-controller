@@ -29,8 +29,8 @@ except FileNotFoundError:
     versions = []
 
 if latest_version in versions:
-    print(f"Version {latest_version} already exists in versions.txt")
+    # No new version detected; intentionally print nothing so the workflow gets an empty output.
     sys.exit(0)
-
-print(latest_version)
+  
+print(str(latest_version).strip())
 sys.exit(0)

@@ -11,6 +11,9 @@ env:
 
 jobs:
   build:
+    concurrency:
+      group: build-${{ github.ref }}
+      cancel-in-progress: true
     name: Build Docker Image
     runs-on: ubuntu-latest
     permissions:

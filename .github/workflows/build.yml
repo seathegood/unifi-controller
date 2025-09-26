@@ -3,7 +3,29 @@ name: Build
 on:
   push:
     branches: [main]
+    paths:
+      - Dockerfile
+      - build.sh
+      - docker-compose.yml
+      - entrypoint.sh
+      - entrypoint-functions.sh
+      - healthcheck.sh
+      - system.properties.default
+      - .github/workflows/build.yml
+      - .github/scripts/**
+      - versions.txt
   pull_request:
+    paths:
+      - Dockerfile
+      - build.sh
+      - docker-compose.yml
+      - entrypoint.sh
+      - entrypoint-functions.sh
+      - healthcheck.sh
+      - system.properties.default
+      - .github/workflows/build.yml
+      - .github/scripts/**
+      - versions.txt
   workflow_dispatch:
 
 env:

@@ -19,9 +19,7 @@ jobs:
 
       - name: Check for new UniFi version
         id: check
-        run: |
-          NEW_VERSION=$(python .github/scripts/check_unifi_version.py)
-          echo "new_version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+        run: python3 .github/scripts/check_unifi_version.py
 
       - name: Update repository files
         if: ${{ steps.check.outputs.new_version != '' }}
@@ -40,7 +38,16 @@ jobs:
           commit-message: "chore: update to UniFi ${{ steps.check.outputs.new_version }}"
           title: "chore: update to UniFi ${{ steps.check.outputs.new_version }}"
           body: |
-            This pull request updates UniFi Controller to version ${{ steps.check.outputs.new_version }}.
-            Please review and test before merging.
+            ## Summary
+            - Update UniFi Network Application to `${{ steps.check.outputs.new_version }}`.
+            - [UniFi Release Notes](${{ steps.check.outputs.release_url }})
+
+            ## Testing
+            - [ ] Build and smoke tests (automatic)
+            - [ ] Publish to Docker Hub
+
+            <!-- unifi-version: ${{ steps.check.outputs.new_version }} -->
+            <!-- release-url: ${{ steps.check.outputs.release_url }} -->
           branch: "unifi-update-${{ steps.check.outputs.new_version }}"
           delete-branch: true
+          labels: automation,ready-to-merge

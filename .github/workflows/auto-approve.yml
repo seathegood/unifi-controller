@@ -1,0 +1,95 @@
+name: Auto Approve and Merge UniFi Updates
+
+on:
+  workflow_run:
+    workflows:
+      - Build
+    types:
+      - completed
+
+jobs:
+  approve-and-merge:
+    if: |
+      github.repository_owner == 'seathegood' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - name: Approve and merge UniFi update PRs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const run = context.payload.workflow_run;
+            const prs = run.pull_requests || [];
+            if (prs.length === 0) {
+              core.info('No pull requests associated with this workflow run.');
+              return;
+            }
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            for (const prInfo of prs) {
+              const prNumber = prInfo.number;
+              const branchName = prInfo.head && prInfo.head.ref ? prInfo.head.ref : '';
+
+              if (!branchName.startsWith('unifi-update-')) {
+                core.info(`Skipping PR #${prNumber}: branch ${branchName} does not match expected pattern.`);
+                continue;
+              }
+
+              const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
+
+              if (pr.state !== 'open') {
+                core.info(`Skipping PR #${prNumber}: PR is not open.`);
+                continue;
+              }
+
+              if (pr.head.repo.fork) {
+                core.info(`Skipping PR #${prNumber}: head repository is a fork.`);
+                continue;
+              }
+
+              try {
+                await github.rest.pulls.createReview({
+                  owner,
+                  repo,
+                  pull_number: prNumber,
+                  event: 'APPROVE',
+                  body: 'Automated approval: Build workflow completed successfully.',
+                });
+                core.info(`Approved PR #${prNumber}.`);
+              } catch (error) {
+                if (error.status === 422) {
+                  core.info(`PR #${prNumber} already has an approval.`);
+                } else {
+                  throw error;
+                }
+              }
+
+              const refreshed = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
+              const mergeableState = refreshed.data.mergeable_state;
+
+              if (mergeableState !== 'clean') {
+                core.info(`PR #${prNumber} is not mergeable (state: ${mergeableState}). Skipping merge for now.`);
+                continue;
+              }
+
+              try {
+                const commitTitle = `${refreshed.data.title} (#${prNumber})`;
+                await github.rest.pulls.merge({
+                  owner,
+                  repo,
+                  pull_number: prNumber,
+                  merge_method: 'squash',
+                  commit_title: commitTitle,
+                  commit_message: '',
+                });
+                core.info(`Merged PR #${prNumber}.`);
+              } catch (error) {
+                core.warning(`Failed to merge PR #${prNumber}: ${error.message}`);
+              }
+            }

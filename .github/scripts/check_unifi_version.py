@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Optional
@@ -31,6 +32,7 @@ query GetReleaseVersionHistory($limit: Int!, $groupId: ID!, $betas: [String!], $
     items {
       version
       stage
+      slug
     }
   }
 }
@@ -77,7 +79,7 @@ def _get_group_id() -> str:
     raise RuntimeError(f"Could not locate release group for '{APP_TITLE}'")
 
 
-def _get_latest_ga_version(group_id: str) -> str:
+def _get_latest_ga_release(group_id: str) -> dict[str, str]:
     data = _graphql_request(
         RELEASES_QUERY,
         {"limit": RESULT_LIMIT, "groupId": group_id, "betas": None, "alphas": None},
@@ -90,7 +92,10 @@ def _get_latest_ga_version(group_id: str) -> str:
 
     for release in releases:
         if release.get("stage") == "GA" and release.get("version"):
-            return release["version"]
+            return {
+                "version": release.get("version", ""),
+                "slug": release.get("slug", ""),
+            }
 
     raise RuntimeError("No GA releases available for the UniFi Network Application")
 
@@ -108,16 +113,33 @@ def _load_known_versions(path: Path) -> list[str]:
 def main() -> None:
     try:
         group_id = _get_group_id()
-        latest_version = _get_latest_ga_version(group_id)
+        latest_release = _get_latest_ga_release(group_id)
+        latest_version = latest_release["version"]
         known_versions = _load_known_versions(Path("./versions.txt"))
     except RuntimeError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         sys.exit(1)
 
+    github_output = os.getenv("GITHUB_OUTPUT")
+
     if latest_version in known_versions:
+        if github_output:
+            with open(github_output, "a", encoding="utf-8") as handle:
+                handle.write("new_version=\n")
+                handle.write("release_slug=\n")
+                handle.write("release_url=\n")
         sys.exit(0)
 
-    print(latest_version)
+    release_slug = latest_release.get("slug", "")
+    release_url = f"https://community.ui.com/releases/{release_slug}" if release_slug else ""
+
+    if github_output:
+        with open(github_output, "a", encoding="utf-8") as handle:
+            handle.write(f"new_version={latest_version}\n")
+            handle.write(f"release_slug={release_slug}\n")
+            handle.write(f"release_url={release_url}\n")
+    else:
+        print(latest_version)
 
 
 if __name__ == "__main__":

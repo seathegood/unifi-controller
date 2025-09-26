@@ -17,14 +17,16 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Python dependencies
-        run: pip install -r .github/scripts/requirements.txt
-
       - name: Check for new UniFi version
         id: check
         run: |
           NEW_VERSION=$(python .github/scripts/check_unifi_version.py)
           echo "new_version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Update repository files
+        if: ${{ steps.check.outputs.new_version != '' }}
+        run: |
+          python .github/scripts/update_unifi_assets.py "${{ steps.check.outputs.new_version }}"
 
       - name: No new version detected
         if: ${{ steps.check.outputs.new_version == '' }}
@@ -40,15 +42,4 @@ jobs:
             This pull request updates UniFi Controller to version ${{ steps.check.outputs.new_version }}.
             Please review and test before merging.
           branch: "unifi-update-${{ steps.check.outputs.new_version }}"
-          delete-branch: true</file>
-      
-      - name: Update versions.txt
-        if: ${{ steps.check.outputs.new_version != '' }}
-        run: |
-          touch versions.txt
-          if ! grep -Fxq "${{ steps.check.outputs.new_version }}" versions.txt; then
-            echo "${{ steps.check.outputs.new_version }}" >> versions.txt
-            echo "Appended ${{ steps.check.outputs.new_version }} to versions.txt"
-          else
-            echo "Version already present in versions.txt; skipping."
-          fi
+          delete-branch: true

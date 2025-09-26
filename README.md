@@ -23,6 +23,13 @@ This Dockerized Unifi Network Controller project is designed to simplify network
 3. **Deploy with Docker Compose**: Run `docker-compose up -d` to start the containers.
 4. **Access and Setup**: Log into the Unifi Controller through the specified port to complete the setup.
 
+## Release & Automation Workflow
+- **Upstream Monitoring**: A scheduled GitHub Actions workflow (`Check for Upstream UniFi Version`) queries Ubiquiti's community GraphQL API for new UniFi Network Application GA releases.
+- **Automated Update Pull Requests**: When a new version is detected, the workflow updates `Dockerfile` and `versions.txt`, opens a pull request labeled `automation`, and links back to the official [UniFi release notes](https://community.ui.com/releases).
+- **Safety Checks**: The standard `Build` workflow runs linting, multi-arch builds, and an amd64 smoke test to verify the container before publication.
+- **Auto Approval & Merge**: Successful builds trigger an auto-approval workflow that squashes the update PR once checks pass on the upstream repository.
+- **Release Publishing**: After the PR merges, another workflow tags the repository, creates a GitHub release with links to the upstream announcement, and kicks off the Docker Hub publication pipeline.
+
 ## Configuration
 Detailed setup instructions for the Unifi Controller and MongoDB, including environment variables, folder structures, and package installations.
 

@@ -1,40 +1,182 @@
-# Standalone Unifi Network Controller
+# UniFi Network Controller Container
+
+A production-ready Docker image for the UniFi Network Application, packaged on Debian Bookworm with automated release management and seamless Docker Hub publishing.
+
+---
 
 ## Overview
-This Dockerized Unifi Network Controller project is designed to simplify network setups by consolidating network services into a single system. Utilizing extensive insights from Ubiquiti's documentation and a thorough analysis of the Unifi Cloud Key Gen 2, it offers a robust, Debian Bookworm-based solution. Special attention has been given to folder structure and package selection to ensure compatibility and an optimal user experience. Additionally, this project diverges from the typical Unifi Controller setup by requiring MongoDB to run in a separate container, adhering to best practices in containerized infrastructure management.
+This project bundles the UniFi Network Application in a hardened, multi-stage container image. The final runtime stage is based on **Debian Bookworm**, giving you an up-to-date security baseline while keeping full compatibility with UniFi’s official `.deb` packages. The controller is deliberately separated from MongoDB—run them as individual services for maximum flexibility and observability.
 
-## Features
-- **Docker-Based Unifi Network Controller**: Streamlines network management by reducing physical hardware needs.
-- **Informed by Ubiquiti's Official Documentation**: Developed with insights from comprehensive research.
-- **Optimized for Debian Bookworm**: Built with a multi-stage image on Debian Bookworm for a current, security-supported base while keeping compatibility with the UniFi Network Application.
-- **Separate MongoDB Instance**: Aligns with containerized infrastructure best practices for better scalability and manageability.
-- **User-Friendly Experience**: Ensures a smooth, hassle-free setup and operational process.
-- **Secure and Reliable**: Focuses on security, following best container and network safety practices.
+---
 
-## Requirements
-- Docker and Docker Compose
-- A separate MongoDB instance (containerized or standalone)
-- Basic understanding of Docker containerization
-- Familiarity with Unifi hardware network configurations
+## Image Highlights
+- **Bookworm runtime** – fresh security patches and long-term support.
+- **Multi-architecture builds** – published for both `linux/amd64` and `linux/arm64`.
+- **External MongoDB** – connect to your own database instance (`mongo:7` works out of the box).
+- **Automated upgrade flow** – scheduled GitHub Actions detect new UniFi releases, open PRs, run tests, and publish to Docker Hub.
+- **Auto-synced documentation** – this README is pushed to Docker Hub whenever it changes.
 
-## Deployment Instructions
-1. **Clone Repository**: `git clone [repository-url]`
-2. **Configure**: Update the `.env` file with your network specifications.
-3. **Deploy with Docker Compose**: Run `docker-compose up -d` to start the containers.
-4. **Access and Setup**: Log into the Unifi Controller through the specified port to complete the setup.
+---
 
-## Release & Automation Workflow
-- **Upstream Monitoring**: A scheduled GitHub Actions workflow (`Check for Upstream UniFi Version`) queries Ubiquiti's community GraphQL API for new UniFi Network Application GA releases.
-- **Automated Update Pull Requests**: When a new version is detected, the workflow updates `Dockerfile` and `versions.txt`, opens a pull request labeled `automation`, and links back to the official [UniFi release notes](https://community.ui.com/releases).
-- **Safety Checks**: The standard `Build` workflow runs linting, multi-arch builds, and an amd64 smoke test to verify the container before publication.
-- **Auto Approval & Merge**: Successful builds trigger an auto-approval workflow that squashes the update PR once checks pass on the upstream repository.
-- **Release Publishing**: After the PR merges, another workflow tags the repository, creates a GitHub release with links to the upstream announcement, and kicks off the Docker Hub publication pipeline.
+## Quick Start (Docker CLI)
+```bash
+docker run -d \
+  --name unifi-controller \
+  --hostname unifi \
+  -p 3478:3478/udp \
+  -p 8080:8080/tcp \
+  -p 8443:8443/tcp \
+  -p 8880:8880/tcp \
+  -p 8843:8843/tcp \
+  -p 6789:6789/tcp \
+  -p 27117:27117/tcp \
+  -p 10001:10001/udp \
+  -p 1900:1900/udp \
+  -p 123:123/udp \
+  -e TZ=America/Chicago \
+  -e DB_MONGO_LOCAL=false \
+  -e DB_MONGO_URI=mongodb://mongo:27017/unifi \
+  -e STATDB_MONGO_URI=mongodb://mongo:27017/unifi_stat \
+  -v $(pwd)/unifi/cert:/usr/lib/unifi/cert \
+  -v $(pwd)/unifi/data:/usr/lib/unifi/data \
+  -v $(pwd)/unifi/logs:/usr/lib/unifi/logs \
+  seathegood/unifi-controller:latest
+```
 
-## Configuration
-Detailed setup instructions for the Unifi Controller and MongoDB, including environment variables, folder structures, and package installations.
+---
 
-## Support and Contribution
-Guidelines for community involvement, issue reporting, feature requests, and improvements are welcomed.
+## Docker Compose Example
+```yaml
+services:
+  mongo:
+    image: mongo:7.0
+    command: --wiredTigerCacheSizeGB 1
+    volumes:
+      - ./mongo/data/db:/data/db
+    restart: unless-stopped
+
+  unifi-controller:
+    image: seathegood/unifi-controller:latest
+    pull_policy: never
+    hostname: unifi
+    domainname: example.local
+    ports:
+      - "3478:3478/udp"
+      - "8080:8080/tcp"
+      - "8443:8443/tcp"
+      - "8880:8880/tcp"
+      - "8843:8843/tcp"
+      - "6789:6789/tcp"
+      - "27117:27117/tcp"
+      - "10001:10001/udp"
+      - "1900:1900/udp"
+      - "123:123/udp"
+    environment:
+      DB_MONGO_LOCAL: "false"
+      DB_MONGO_URI: mongodb://mongo:27017/unifi
+      STATDB_MONGO_URI: mongodb://mongo:27017/unifi_stat
+      TZ: America/Chicago
+    volumes:
+      - ./unifi/cert:/usr/lib/unifi/cert
+      - ./unifi/data:/usr/lib/unifi/data
+      - ./unifi/logs:/usr/lib/unifi/logs
+    depends_on:
+      - mongo
+    restart: unless-stopped
+```
+
+---
+
+## Kubernetes Deployment (excerpt)
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unifi-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unifi-controller
+  template:
+    metadata:
+      labels:
+        app: unifi-controller
+    spec:
+      containers:
+        - name: unifi-controller
+          image: seathegood/unifi-controller:latest
+          ports:
+            - containerPort: 8443
+              name: https
+            - containerPort: 8080
+              name: inform
+            - containerPort: 3478
+              protocol: UDP
+              name: stun
+          env:
+            - name: DB_MONGO_LOCAL
+              value: "false"
+            - name: DB_MONGO_URI
+              value: mongodb://mongo.default.svc.cluster.local:27017/unifi
+            - name: STATDB_MONGO_URI
+              value: mongodb://mongo.default.svc.cluster.local:27017/unifi_stat
+            - name: TZ
+              value: America/Chicago
+          volumeMounts:
+            - name: unifi-data
+              mountPath: /usr/lib/unifi/data
+            - name: unifi-logs
+              mountPath: /usr/lib/unifi/logs
+      volumes:
+        - name: unifi-data
+          persistentVolumeClaim:
+            claimName: unifi-data
+        - name: unifi-logs
+          persistentVolumeClaim:
+            claimName: unifi-logs
+```
+_Expose the required ports using a `Service` (typically `LoadBalancer` or `NodePort`). MongoDB can be provided by operators such as Bitnami’s chart or an external managed instance._
+
+---
+
+## Configuration Reference
+| Variable | Default | Description |
+| --- | --- | --- |
+| `DB_MONGO_LOCAL` | `false` | Set to `true` to run the legacy in-container MongoDB (not recommended). |
+| `DB_MONGO_URI` | `mongodb://mongo:27017/unifi` | Primary MongoDB connection string for controller data. |
+| `STATDB_MONGO_URI` | `mongodb://mongo:27017/unifi_stat` | MongoDB URI for stat collections. |
+| `TZ` | `UTC` | Timezone for log timestamps. |
+| `UNIFI_DB_NAME` | `unifi` | Database name used by the controller. |
+
+**Volumes**
+- `/usr/lib/unifi/cert` – place `privkey.pem` and `fullchain.pem` for custom TLS.
+- `/usr/lib/unifi/data` – controller config and backups (persist this!).
+- `/usr/lib/unifi/logs` – application logs.
+
+**Ports** (all must be reachable by devices/clients)
+- UDP: `3478`, `10001`, `1900`, `123`
+- TCP: `8080`, `8443`, `8880`, `8843`, `6789`, `27117`
+
+---
+
+## Automated Release Pipeline
+1. **Daily upstream scan** – `Check for Upstream UniFi Version` queries the UniFi community GraphQL API.
+2. **Auto PR** – when a new GA version appears, a branch `unifi-update-<version>` is created with updated `Dockerfile`, `versions.txt`, and release notes.
+3. **Build & smoke tests** – multi-arch build, Hadolint linting, and an amd64 runtime test run on GitHub Actions.
+4. **Auto approval & merge** – once checks pass, the PR is approved and merged automatically in the upstream repo.
+5. **Tag & publish** – a follow-up workflow creates a GitHub release, pushes `seathegood/unifi-controller:<version>` and `latest` to Docker Hub, and syncs this README.
+
+---
+
+## Support & Contributions
+Issues and PRs are welcome! Please:
+- Provide detailed reproduction steps and logs for issues.
+- Follow existing code style and add tests or documentation for new features.
+- Use the Discussions tab for general questions.
+
+---
 
 ## License
-MIT License - This project is freely usable, modifiable, and distributable under the terms specified in the LICENSE file.
+MIT License – see [`LICENSE`](LICENSE) for details.
+

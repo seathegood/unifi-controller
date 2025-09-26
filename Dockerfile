@@ -3,7 +3,7 @@ FROM debian:bullseye
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Build arguments
-ARG UNIFI_CONTROLLER_VERSION=9.3.45
+ARG UNIFI_CONTROLLER_VERSION=9.4.19
 ARG BUILD_DATE
 ARG VCS_REF
 

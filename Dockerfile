@@ -1,4 +1,4 @@
-ARG UNIFI_CONTROLLER_VERSION=10.0.160
+ARG UNIFI_CONTROLLER_VERSION=10.0.162
 
 FROM debian:bookworm-slim AS downloader
 ARG UNIFI_CONTROLLER_VERSION
@@ -79,7 +79,7 @@ RUN set -x \
 
 WORKDIR /usr/lib/unifi
 
-EXPOSE 3478/udp 5514/udp 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 27117/tcp 10001/udp 1900/udp 123/udp
+EXPOSE 53/tcp 53/udp 3478/udp 5514/udp 5671/tcp 8080/tcp 8443/tcp 8444/tcp 8880/tcp 8881/tcp 8882/tcp 8843/tcp 6789/tcp 27117/tcp 10001/udp 1900/udp 22/tcp 22/udp 443/tcp 443/udp 123/udp
 
 VOLUME ["/usr/lib/unifi/cert", "/usr/lib/unifi/data", "/usr/lib/unifi/logs"]
 

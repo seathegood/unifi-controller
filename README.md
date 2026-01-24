@@ -23,15 +23,26 @@ This project bundles the UniFi Network Application in a hardened, multi-stage co
 docker run -d \
   --name unifi-controller \
   --hostname unifi \
+  -p 22:22/tcp \
+  -p 22:22/udp \
+  -p 53:53/tcp \
+  -p 53:53/udp \
   -p 3478:3478/udp \
+  -p 5514:5514/udp \
+  -p 5671:5671/tcp \
   -p 8080:8080/tcp \
   -p 8443:8443/tcp \
+  -p 8444:8444/tcp \
   -p 8880:8880/tcp \
+  -p 8881:8881/tcp \
+  -p 8882:8882/tcp \
   -p 8843:8843/tcp \
   -p 6789:6789/tcp \
   -p 27117:27117/tcp \
   -p 10001:10001/udp \
   -p 1900:1900/udp \
+  -p 443:443/tcp \
+  -p 443:443/udp \
   -p 123:123/udp \
   -e TZ=America/Chicago \
   -e DB_MONGO_LOCAL=false \
@@ -61,15 +72,26 @@ services:
     hostname: unifi
     domainname: example.local
     ports:
+      - "22:22/tcp"
+      - "22:22/udp"
+      - "53:53/tcp"
+      - "53:53/udp"
       - "3478:3478/udp"
+      - "5514:5514/udp"
+      - "5671:5671/tcp"
       - "8080:8080/tcp"
       - "8443:8443/tcp"
+      - "8444:8444/tcp"
       - "8880:8880/tcp"
+      - "8881:8881/tcp"
+      - "8882:8882/tcp"
       - "8843:8843/tcp"
       - "6789:6789/tcp"
       - "27117:27117/tcp"
       - "10001:10001/udp"
       - "1900:1900/udp"
+      - "443:443/tcp"
+      - "443:443/udp"
       - "123:123/udp"
     environment:
       DB_MONGO_LOCAL: "false"
@@ -155,8 +177,8 @@ _Expose the required ports using a `Service` (typically `LoadBalancer` or `NodeP
 - `/usr/lib/unifi/logs` – application logs.
 
 **Ports** (all must be reachable by devices/clients)
-- UDP: `3478`, `10001`, `1900`, `123`
-- TCP: `8080`, `8443`, `8880`, `8843`, `6789`, `27117`
+- UDP: `22`, `53`, `3478`, `5514`, `10001`, `1900`, `443`, `123`
+- TCP: `22`, `53`, `5671`, `8080`, `8443`, `8444`, `8880`, `8881`, `8882`, `8843`, `6789`, `27117`, `443`
 
 ---
 
@@ -179,4 +201,3 @@ Issues and PRs are welcome! Please:
 
 ## License
 MIT License – see [`LICENSE`](LICENSE) for details.
-

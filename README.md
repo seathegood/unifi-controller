@@ -28,6 +28,7 @@ Environment configuration:
 - Copy `.env.example` to `.env` for local overrides.
 - Keep `.env` untracked.
 - Required variables: `DB_MONGO_LOCAL`, `DB_MONGO_URI`, `STATDB_MONGO_URI`, `UNIFI_DB_NAME`.
+- See `docs/local-dev.md` for cross-platform local workflow notes.
 
 ---
 

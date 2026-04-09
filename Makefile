@@ -8,11 +8,40 @@ bootstrap:
 	@echo "Bootstrap complete."
 
 doctor:
-	@command -v bash >/dev/null
-	@command -v python3 >/dev/null
-	@command -v docker >/dev/null
-	@docker compose version >/dev/null
-	@echo "Doctor checks passed."
+	@missing=0; \
+	check_cmd() { \
+		cmd="$$1"; \
+		hint="$$2"; \
+		if command -v "$$cmd" >/dev/null 2>&1; then \
+			echo "[ok] $$cmd"; \
+		else \
+			echo "[missing] $$cmd - $$hint"; \
+			missing=1; \
+		fi; \
+	}; \
+	check_cmd bash "Install GNU Bash (usually preinstalled)."; \
+	check_cmd python3 "Install Python 3 from https://www.python.org/downloads/."; \
+	check_cmd git "Install Git from https://git-scm.com/downloads."; \
+	check_cmd curl "Install curl (usually preinstalled)."; \
+	check_cmd docker "Install Docker Desktop or Docker Engine."; \
+	if command -v docker >/dev/null 2>&1; then \
+		if docker compose version >/dev/null 2>&1; then \
+			echo "[ok] docker compose"; \
+		else \
+			echo "[missing] docker compose - Install Docker Compose v2 plugin."; \
+			missing=1; \
+		fi; \
+	fi; \
+	if command -v hadolint >/dev/null 2>&1; then \
+		echo "[ok] hadolint (optional)"; \
+	else \
+		echo "[warn] hadolint not found (optional, CI still enforces Dockerfile lint)."; \
+	fi; \
+	if [ "$$missing" -ne 0 ]; then \
+		echo "Doctor checks failed."; \
+		exit 1; \
+	fi; \
+	echo "Doctor checks passed."
 
 lint:
 	@bash -n build.sh entrypoint.sh entrypoint-functions.sh healthcheck.sh

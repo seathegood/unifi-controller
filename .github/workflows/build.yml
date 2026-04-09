@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - Dockerfile
+      - Makefile
       - build.sh
       - docker-compose.yml
       - entrypoint.sh
@@ -17,6 +18,7 @@ on:
   pull_request:
     paths:
       - Dockerfile
+      - Makefile
       - build.sh
       - docker-compose.yml
       - entrypoint.sh
@@ -42,7 +44,10 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Contract checks
+        run: make check
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -66,13 +71,13 @@ jobs:
             org.opencontainers.image.licenses=MIT
 
       - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: Dockerfile
 
       - name: Build image (multi-arch cache prime)
         if: github.event_name != 'pull_request'
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
@@ -86,7 +91,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build image for smoke tests (amd64)
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile

@@ -9,10 +9,32 @@ This project bundles the UniFi Network Application in a hardened, multi-stage co
 
 ---
 
+## Local Workflow Contract
+The repository standardizes local validation through `make`:
+
+```bash
+make bootstrap     # create local transient directories
+make doctor        # verify required local tools
+make check         # shared validation contract (humans, CI, agents)
+make clean-local   # remove local transient artifacts
+```
+
+Transient and generated outputs:
+- `_tmp/` for local transient artifacts (untracked)
+- `_reports/` for generated outputs (untracked)
+- `.venv/` for optional local tooling (untracked)
+
+Environment configuration:
+- Copy `.env.example` to `.env` for local overrides.
+- Keep `.env` untracked.
+- Required variables: `DB_MONGO_LOCAL`, `DB_MONGO_URI`, `STATDB_MONGO_URI`, `UNIFI_DB_NAME`.
+
+---
+
 ## Image Highlights
 - **Bookworm runtime** – fresh security patches and long-term support.
 - **Multi-architecture builds** – published for both `linux/amd64` and `linux/arm64`.
-- **External MongoDB** – connect to your own database instance (`mongo:7` works out of the box).
+- **External MongoDB** – connect to your own database instance (`mongo:8.0` works out of the box).
 - **Automated upgrade flow** – scheduled GitHub Actions detect new UniFi releases, open PRs, run tests, and publish to Docker Hub.
 - **Auto-synced documentation** – this README is pushed to Docker Hub whenever it changes.
 
@@ -48,9 +70,9 @@ docker run -d \
   -e DB_MONGO_LOCAL=false \
   -e DB_MONGO_URI=mongodb://mongo:27017/unifi \
   -e STATDB_MONGO_URI=mongodb://mongo:27017/unifi_stat \
-  -v $(pwd)/unifi/cert:/usr/lib/unifi/cert \
-  -v $(pwd)/unifi/data:/usr/lib/unifi/data \
-  -v $(pwd)/unifi/logs:/usr/lib/unifi/logs \
+  -v $(pwd)/unifi-controller/cert:/usr/lib/unifi/cert \
+  -v $(pwd)/unifi-controller/data:/usr/lib/unifi/data \
+  -v $(pwd)/unifi-controller/logs:/usr/lib/unifi/logs \
   seathegood/unifi-controller:latest
 ```
 
@@ -60,7 +82,7 @@ docker run -d \
 ```yaml
 services:
   mongo:
-    image: mongo:7.0
+    image: mongo:8.0
     command: --wiredTigerCacheSizeGB 1
     volumes:
       - ./mongo/data/db:/data/db

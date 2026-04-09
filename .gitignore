@@ -1,7 +1,20 @@
-# Dependency directories (remove the comment below to include it)
-# vendor/
 .DS_Store
 
-# Project files generated through testing
-**/mongo
-**/unifi-controller
+# Local env and virtualenv
+.env
+.env.local
+.venv/
+
+# Local transient and generated artifacts
+_tmp/
+_reports/
+
+# Python/build caches
+__pycache__/
+*.py[cod]
+
+# Local runtime data mounts (do not commit)
+/mongo/data/
+/unifi-controller/cert/
+/unifi-controller/data/
+/unifi-controller/logs/

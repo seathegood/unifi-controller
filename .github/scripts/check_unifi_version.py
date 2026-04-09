@@ -12,7 +12,7 @@ APP_TITLE = "UniFi Network Application"
 REQUEST_HEADERS = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "User-Agent": "check-unifi-version/1.0 (+https://github.com/unifi-controller)",
+    "User-Agent": "check-unifi-version/1.0 (+https://github.com/seathegood/unifi-controller)",
 }
 REQUEST_TIMEOUT = 15
 RESULT_LIMIT = 50

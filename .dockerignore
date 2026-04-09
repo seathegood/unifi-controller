@@ -1,0 +1,18 @@
+.git
+.github
+.venv
+.env
+.env.*
+
+# Local-only artifacts
+_tmp
+_reports
+
+# Local runtime volumes
+mongo/data
+unifi-controller/cert
+unifi-controller/data
+unifi-controller/logs
+
+# Editor/OS noise
+.DS_Store

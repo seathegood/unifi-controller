@@ -31,8 +31,7 @@ format-check:
 	@echo "No formatter check configured for this repository."
 
 unit:
-	@python3 .github/scripts/update_unifi_assets.py --help >/dev/null
-	@echo "No dedicated unit test suite is currently defined."
+	@python3 -m unittest discover -s tests -p "test_*.py" -v
 
 check: lint unit
 	@echo "All checks passed."
